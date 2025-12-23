@@ -61,7 +61,6 @@
       "liveCasinoIframe": " https://api7.live/api/livecasino/iframe",
       "liveCasino": " https://cache7.live/api/exchange/diamond/liveCasino",
       "downline": "https://admin.api7.live/api/downline",
-
       "createDownLine": "https://admin.api7.live/api/createDownline",
       "checkUsername": "https://admin.api7.live/api/checkUsername",
       "accountStatement": "https://admin.api7.live/api/accountStatement",
@@ -71,7 +70,7 @@
       "userAuthentication": "https://admin.api7.live/api/userAuthentication",
       "searchUser": "https://admin.api7.live/api/searchUser",
       "Bank": "https://admin.api7.live/api/bank",
-      "settledBets": "https://admin.api7.live/api/settledBets",
+      "settledBets": "https://admin.api7.live/api/buzz/settledBets",
       "assets": "https://api7.live/sitethemes",
       "qrCode": "https://admin.api7.live/api/qrCode",
       "qrValidate": "https://admin.api7.live/api/qrValidate",

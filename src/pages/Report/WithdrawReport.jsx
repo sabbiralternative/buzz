@@ -18,8 +18,8 @@ const WithdrawReport = () => {
   const { data: branches } = useGetIndex({
     type: "getBranches",
   });
-  const [amountFrom, setAmountFrom] = useState(null);
-  const [amountTo, setAmountTo] = useState(null);
+  // const [amountFrom, setAmountFrom] = useState(null);
+  // const [amountTo, setAmountTo] = useState(null);
   const [showImage, setShowImage] = useState(false);
   const [image, setImage] = useState("");
   const { token, setClientId, adminRole, setRefetchViewClient } =
@@ -40,8 +40,8 @@ const WithdrawReport = () => {
       toDate: moment(endDate).format("YYYY-MM-DD"),
       token: generatedToken,
       pagination: true,
-      amountFrom: amountFrom ? Number(amountFrom) : null,
-      amountTo: amountTo ? Number(amountTo) : null,
+      // amountFrom: amountFrom ? Number(amountFrom) : null,
+      // amountTo: amountTo ? Number(amountTo) : null,
     };
     if (adminRole === AdminRole.admin_staff) {
       payload.branch_id = branchId;
@@ -174,7 +174,7 @@ const WithdrawReport = () => {
                         </select>
                       </div>
                     )}
-                    <div
+                    {/* <div
                       style={{
                         display: "flex",
                         flexDirection: "column",
@@ -207,7 +207,7 @@ const WithdrawReport = () => {
                         className="form-control"
                         id="Amount To"
                       />
-                    </div>
+                    </div> */}
                   </div>
                 </div>
 
@@ -255,28 +255,14 @@ const WithdrawReport = () => {
                     <thead className="table-dark">
                       <tr>
                         <th>User Id</th>
-                        <th>Login Name</th>
-                        <th>Branch Name</th>
 
-                        {adminRole === AdminRole.hyper_master ||
-                        adminRole === AdminRole.admin_master ? (
-                          <>
-                            <th>Mobile</th>
-                            {/* <th>User Name</th> */}
-                          </>
-                        ) : null}
-
-                        <th>Bank A/C</th>
                         <th>Amount</th>
-                        <th>Bank Name</th>
+
                         <th>Image</th>
                         <th>Request Time</th>
                         <th>Approval Time</th>
-                        <th>Account No</th>
-                        <th>Ifsc</th>
-                        <th>Remark</th>
+
                         <th>Status</th>
-                        {/* <th>Action</th> */}
                       </tr>
                     </thead>
                     <tbody className="table-border-bottom-0">
@@ -293,18 +279,9 @@ const WithdrawReport = () => {
                             >
                               {data?.userId}
                             </td>
-                            <td>{data?.loginname}</td>
-                            <td>{data?.branch_name}</td>
-                            {adminRole === AdminRole.hyper_master ||
-                            adminRole === AdminRole.admin_master ? (
-                              <>
-                                <td>{data?.mobile}</td>
-                                {/* <td>{data?.loginname}</td> */}
-                              </>
-                            ) : null}
-                            <td>{data?.bank_account_name}</td>
+
                             <td>{data?.amount}</td>
-                            <td>{data?.bank_name}</td>
+
                             <td>
                               {data?.image && (
                                 <img
@@ -326,9 +303,7 @@ const WithdrawReport = () => {
 
                             <td>{data?.withdraw_date}</td>
                             <td>{data?.date_modified}</td>
-                            <td>{data?.account_number}</td>
-                            <td>{data?.ifsc}</td>
-                            <td>{data?.remark}</td>
+
                             <td>
                               <span
                                 className={`badge ${

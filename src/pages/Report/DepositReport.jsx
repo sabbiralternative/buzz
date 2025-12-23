@@ -5,7 +5,7 @@ import { API } from "../../api";
 import axios from "axios";
 import useContextState from "../../hooks/useContextState";
 import { useState } from "react";
-import ShowImage from "../../components/modal/ShowImage";
+// import ShowImage from "../../components/modal/ShowImage";
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
 import { defaultDate } from "../../utils/defaultDate";
@@ -19,10 +19,9 @@ const DepositReport = () => {
   const { data: branches } = useGetIndex({
     type: "getBranches",
   });
-  const [amountFrom, setAmountFrom] = useState(null);
-  const [amountTo, setAmountTo] = useState(null);
-  const [showDepositImage, setShowDepositImage] = useState(false);
-  const [image, setImage] = useState("");
+  // const [amountFrom, setAmountFrom] = useState(null);
+  // const [amountTo, setAmountTo] = useState(null);
+  // const [showDepositImage, setShowDepositImage] = useState(false);
   const { token, setClientId, adminRole, setRefetchViewClient } =
     useContextState();
   const navigate = useNavigate();
@@ -42,8 +41,8 @@ const DepositReport = () => {
       toDate: moment(endDate).format("YYYY-MM-DD"),
       token: generatedToken,
       pagination: true,
-      amountFrom: amountFrom ? Number(amountFrom) : null,
-      amountTo: amountTo ? Number(amountTo) : null,
+      // amountFrom: amountFrom ? Number(amountFrom) : null,
+      // amountTo: amountTo ? Number(amountTo) : null,
     };
     if (adminRole === AdminRole.admin_staff) {
       payload.branch_id = branchId;
@@ -96,88 +95,81 @@ const DepositReport = () => {
   }
 
   return (
-    <>
-      {showDepositImage && (
-        <ShowImage image={image} setShowImage={setShowDepositImage} />
-      )}
-      <div className="container-xxl flex-grow-1 container-p-y">
-        <div className="col-12">
-          <div className="card">
-            <div className="card-body">
-              <form
-                id="formValidationExamples"
-                className="row g-3 fv-plugins-bootstrap5 fv-plugins-framework"
-              >
-                <div className="col-md-6 col-12 mb-4">
-                  <div style={{ display: "flex", gap: "10px" }}>
-                    <div style={{ width: "100%" }}>
-                      <label htmlFor="flatpickr-range" className="form-label">
-                        From Date
-                      </label>
-                      <DatePicker
-                        style={{ width: "100%" }}
-                        format="yyyy-MM-dd"
-                        editable
-                        onChange={(date) => setStartDate(date)}
-                        value={startDate}
-                        block
-                      />
-                    </div>
-                    <div style={{ width: "100%" }}>
-                      <label htmlFor="flatpickr-range" className="form-label">
-                        To Date
-                      </label>
-                      <DatePicker
-                        style={{ width: "100%" }}
-                        format="yyyy-MM-dd"
-                        editable
-                        onChange={(date) => setEndDate(date)}
-                        value={endDate}
-                        block
-                      />
-                    </div>
+    <div className="container-xxl flex-grow-1 container-p-y">
+      <div className="col-12">
+        <div className="card">
+          <div className="card-body">
+            <form
+              id="formValidationExamples"
+              className="row g-3 fv-plugins-bootstrap5 fv-plugins-framework"
+            >
+              <div className="col-md-6 col-12 mb-4">
+                <div style={{ display: "flex", gap: "10px" }}>
+                  <div style={{ width: "100%" }}>
+                    <label htmlFor="flatpickr-range" className="form-label">
+                      From Date
+                    </label>
+                    <DatePicker
+                      style={{ width: "100%" }}
+                      format="yyyy-MM-dd"
+                      editable
+                      onChange={(date) => setStartDate(date)}
+                      value={startDate}
+                      block
+                    />
                   </div>
-                  <DefaultDateButton
-                    setEndDate={setEndDate}
-                    setStartDate={setStartDate}
-                    lastThreeMonth={true}
-                    lastSixMonth={true}
-                    lastOneYear={true}
-                  />
-                  <div style={{ display: "flex", gap: "10px" }}>
-                    {adminRole === AdminRole.admin_staff && (
-                      <div
-                        style={{
-                          display: "flex",
-                          flexDirection: "column",
-                          width: "100%",
-                        }}
-                      >
-                        <label className="col-form-label" htmlFor="Amount From">
-                          Branch
-                        </label>
-                        <select
-                          style={{ width: "200px" }}
-                          defaultValue="0"
-                          onChange={(e) => setBranchId(e.target.value)}
-                          className="form-control"
-                        >
-                          <option disabled value="">
-                            Branch
-                          </option>
-                          <option value="0">All Branch</option>
-                          {branches?.result?.map((site) => (
-                            <option
-                              key={site?.branch_id}
-                              value={site?.branch_id}
-                            >
-                              {site?.branch_name}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
-                    )}
+                  <div style={{ width: "100%" }}>
+                    <label htmlFor="flatpickr-range" className="form-label">
+                      To Date
+                    </label>
+                    <DatePicker
+                      style={{ width: "100%" }}
+                      format="yyyy-MM-dd"
+                      editable
+                      onChange={(date) => setEndDate(date)}
+                      value={endDate}
+                      block
+                    />
+                  </div>
+                </div>
+                <DefaultDateButton
+                  setEndDate={setEndDate}
+                  setStartDate={setStartDate}
+                  lastThreeMonth={true}
+                  lastSixMonth={true}
+                  lastOneYear={true}
+                />
+                <div style={{ display: "flex", gap: "10px" }}>
+                  {adminRole === AdminRole.admin_staff && (
                     <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        width: "100%",
+                      }}
+                    >
+                      <label className="col-form-label" htmlFor="Amount From">
+                        Branch
+                      </label>
+                      <select
+                        style={{ width: "200px" }}
+                        defaultValue="0"
+                        onChange={(e) => setBranchId(e.target.value)}
+                        className="form-control"
+                      >
+                        <option disabled value="">
+                          Branch
+                        </option>
+                        <option value="0">All Branch</option>
+                        {branches?.result?.map((site) => (
+                          <option key={site?.branch_id} value={site?.branch_id}>
+                            {site?.branch_name}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  )}
+                  {/* <div
                       style={{
                         display: "flex",
                         flexDirection: "column",
@@ -210,164 +202,107 @@ const DepositReport = () => {
                         className="form-control"
                         id="Amount To"
                       />
-                    </div>
-                  </div>
+                    </div> */}
                 </div>
+              </div>
 
-                <div className="col-12">
-                  <button
-                    disabled={isLoading || isLoadingExport}
-                    onClick={handleToggleViewDeposit}
-                    type="submit"
-                    name="submit"
-                    className="btn btn-primary"
-                  >
-                    {isLoading && <Loader size={15} />}{" "}
-                    <span style={{ marginLeft: isLoading ? "8px" : "0px" }}>
-                      View
-                    </span>
-                  </button>
-                  <button
-                    disabled={isLoading || isLoadingExport}
-                    onClick={exportToExcel}
-                    type="submit"
-                    name="submit"
-                    className="btn btn-primary"
-                    style={{ marginLeft: "10px" }}
-                  >
-                    {isLoadingExport && <Loader size={15} />}{" "}
-                    <span
-                      style={{ marginLeft: isLoadingExport ? "8px" : "0px" }}
-                    >
-                      Export
-                    </span>
-                  </button>
-                </div>
-              </form>
-            </div>
+              <div className="col-12">
+                <button
+                  disabled={isLoading || isLoadingExport}
+                  onClick={handleToggleViewDeposit}
+                  type="submit"
+                  name="submit"
+                  className="btn btn-primary"
+                >
+                  {isLoading && <Loader size={15} />}{" "}
+                  <span style={{ marginLeft: isLoading ? "8px" : "0px" }}>
+                    View
+                  </span>
+                </button>
+                <button
+                  disabled={isLoading || isLoadingExport}
+                  onClick={exportToExcel}
+                  type="submit"
+                  name="submit"
+                  className="btn btn-primary"
+                  style={{ marginLeft: "10px" }}
+                >
+                  {isLoadingExport && <Loader size={15} />}{" "}
+                  <span style={{ marginLeft: isLoadingExport ? "8px" : "0px" }}>
+                    Export
+                  </span>
+                </button>
+              </div>
+            </form>
           </div>
         </div>
-
-        {viewDepositData && (
-          <>
-            <hr className="my-3" />
-            {totalDeposit ? (
-              <p style={{ margin: "0px" }}>
-                Total Deposit :
-                {new Intl.NumberFormat("en-IN").format(totalDeposit)}
-              </p>
-            ) : null}
-            {depositData?.length > 0 ? (
-              <p style={{ margin: "0px", marginBottom: "5px" }}>
-                Deposit Count: {depositData?.length}
-              </p>
-            ) : null}
-            {depositData?.length > 0 ? (
-              <div className="card">
-                <h5 className="card-header">Deposit Report</h5>
-                <div className="table-responsive text-nowrap">
-                  <table className="table table-hover table-sm">
-                    <thead className="table-dark">
-                      <tr>
-                        <th>User Id</th>
-                        <th>Login Name</th>
-
-                        <th>Branch Name</th>
-                        {adminRole === AdminRole.hyper_master ||
-                        adminRole === AdminRole.admin_master ? (
-                          <>
-                            <th>Mobile</th>
-                            {/* <th>User Name</th> */}
-                          </>
-                        ) : null}
-
-                        <th>Amount</th>
-                        <th>Utr</th>
-                        <th>Request Time</th>
-                        <th>Approval Time</th>
-                        <th>Image</th>
-                        <th>Remark</th>
-                        <th>Status</th>
-                      </tr>
-                    </thead>
-                    <tbody className="table-border-bottom-0">
-                      {depositData?.map((data, i) => {
-                        return (
-                          <tr key={i}>
-                            <td
-                              style={{ cursor: "pointer" }}
-                              onClick={() => {
-                                setClientId(data?.userId);
-                                setRefetchViewClient(true);
-                                navigate("/view-client");
-                              }}
-                            >
-                              {data?.userId}
-                            </td>
-                            <td>{data?.loginname}</td>
-
-                            <td>{data?.branch_name}</td>
-                            {adminRole === AdminRole.hyper_master ||
-                            adminRole === AdminRole.admin_master ? (
-                              <>
-                                <td>{data?.mobile}</td>
-                                {/* <td>{data?.loginname}</td> */}
-                              </>
-                            ) : null}
-
-                            <td>{data?.amount}</td>
-                            <td>{data?.utr}</td>
-                            <td>{data?.deposit_date}</td>
-                            <td>{data?.date_modified}</td>
-                            <td>
-                              {data?.image && (
-                                <img
-                                  onClick={() => {
-                                    setImage("");
-                                    setShowDepositImage(true);
-                                    setImage(data?.image);
-                                  }}
-                                  style={{
-                                    height: "40px",
-                                    width: "40px",
-                                    objectFit: "contain",
-                                    cursor: "pointer",
-                                  }}
-                                  src={data?.image}
-                                  alt=""
-                                />
-                              )}
-                            </td>
-                            <td>{data?.remark}</td>
-                            <td>
-                              <span
-                                className={`badge ${
-                                  data?.status == "APPROVED"
-                                    ? "bg-label-primary"
-                                    : "bg-label-warning"
-                                } me-1`}
-                              >
-                                {data?.status}
-                              </span>
-                            </td>
-                          </tr>
-                        );
-                      })}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            ) : (
-              <div className="card">
-                <h5 style={{ fontSize: "18px" }} className="card-header">
-                  No data found for given date range.
-                </h5>
-              </div>
-            )}
-          </>
-        )}
       </div>
-    </>
+
+      {viewDepositData && (
+        <>
+          <hr className="my-3" />
+          {totalDeposit ? (
+            <p style={{ margin: "0px" }}>
+              Total Deposit :
+              {new Intl.NumberFormat("en-IN").format(totalDeposit)}
+            </p>
+          ) : null}
+          {depositData?.length > 0 ? (
+            <p style={{ margin: "0px", marginBottom: "5px" }}>
+              Deposit Count: {depositData?.length}
+            </p>
+          ) : null}
+          {depositData?.length > 0 ? (
+            <div className="card">
+              <h5 className="card-header">Deposit Report</h5>
+              <div className="table-responsive text-nowrap">
+                <table className="table table-hover table-sm">
+                  <thead className="table-dark">
+                    <tr>
+                      <th>User Id</th>
+
+                      <th>Amount</th>
+
+                      <th>Request Time</th>
+                      <th>Approval Time</th>
+                    </tr>
+                  </thead>
+                  <tbody className="table-border-bottom-0">
+                    {depositData?.map((data, i) => {
+                      return (
+                        <tr key={i}>
+                          <td
+                            style={{ cursor: "pointer" }}
+                            onClick={() => {
+                              setClientId(data?.userId);
+                              setRefetchViewClient(true);
+                              navigate("/view-client");
+                            }}
+                          >
+                            {data?.userId}
+                          </td>
+
+                          <td>{data?.amount}</td>
+
+                          <td>{data?.deposit_date}</td>
+                          <td>{data?.date_modified}</td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          ) : (
+            <div className="card">
+              <h5 style={{ fontSize: "18px" }} className="card-header">
+                No data found for given date range.
+              </h5>
+            </div>
+          )}
+        </>
+      )}
+    </div>
   );
 };
 
