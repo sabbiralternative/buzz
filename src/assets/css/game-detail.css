@@ -1,0 +1,190 @@
+
+.small{font-size:80%;font-weight:400;}
+
+.table-responsive{display:block;width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+.btn{display:inline-block;font-weight:400;text-align:center;vertical-align:middle;cursor:pointer}
+
+.btn:hover{color:#495057;text-decoration:none;}
+.btn:focus{outline:0;}
+.btn:disabled{opacity:0.65;}
+.nav{display:flex;flex-wrap:wrap;padding-left:0;margin-bottom:0;list-style:none;}
+.nav-link{display:block;padding:0.5rem 1rem;}
+.nav-link:focus,.nav-link:hover{text-decoration:none;}
+.nav-tabs{border-bottom:1px solid #ced4da;}
+.nav-tabs .nav-item{margin-bottom:-1px;}
+.nav-tabs .nav-link{border:1px solid transparent;border-top-left-radius:0.25rem;border-top-right-radius:0.25rem;}
+.nav-tabs .nav-link:focus,.nav-tabs .nav-link:hover{border-color:#eff2f7 #eff2f7 #ced4da;}
+.nav-tabs .nav-link.active{color:#495057;background-color:#fff;border-color:#ced4da #ced4da #fff;}
+.tab-content > .tab-pane{display:none;}
+.tab-content > .active{display:block;}
+
+.card-body{flex:1 1 auto;min-height:1px;padding:1.25rem;}
+.card-title{margin-bottom:0.75rem;}
+
+.card-header:first-child{border-radius:0.25rem 0.25rem 0 0;}
+.d-none{display:none!important;}
+.d-block{display:block!important;}
+.float-left{float:left!important;}
+.float-right{float:right!important;}
+.mb-0{margin-bottom:0!important;}
+.mr-1{margin-right:0.25rem!important;}
+.text-right{text-align:right!important;}
+
+
+h6{color:#495057;}
+
+
+.card{margin-bottom:24px;}
+.card-title{font-size:15px;margin:0 0 7px;font-weight:600;}
+.nav-tabs > li > a{color:#495057;font-weight:500;}
+.table th{font-weight:600;}
+.table-responsive{margin-bottom:1rem;}
+.table-responsive > .table{margin-bottom:0;}
+@media print{
+.card-body{padding:0;margin:0;}
+.card{border:0;}
+}
+[data-simplebar]{position:relative;flex-direction:column;flex-wrap:wrap;justify-content:flex-start;align-content:flex-start;align-items:flex-start;}
+.simplebar-wrapper{overflow:hidden;width:inherit;height:inherit;max-width:inherit;max-height:inherit;}
+.simplebar-mask{direction:inherit;overflow:hidden;left:0;right:0;width:auto!important;height:auto!important;z-index:0;}
+.simplebar-mask,.simplebar-offset{position:absolute;padding:0;margin:0;top:0;bottom:0;}
+.simplebar-offset{direction:inherit!important;box-sizing:inherit!important;resize:none!important;left:0!important;right:0!important;-webkit-overflow-scrolling:touch;}
+.simplebar-content-wrapper{direction:inherit;box-sizing:border-box!important;position:relative;display:block;height:100%;width:auto;visibility:visible;overflow:auto;max-width:100%;max-height:100%;scrollbar-width:none;padding:0!important;}
+.simplebar-content-wrapper::-webkit-scrollbar{display:none;}
+.simplebar-content:after,.simplebar-content:before{content:" ";display:table;}
+.simplebar-placeholder{max-height:100%;max-width:100%;width:100%;pointer-events:none;}
+.simplebar-height-auto-observer-wrapper{box-sizing:inherit!important;height:100%;width:100%;max-width:1px;position:relative;float:left;max-height:1px;overflow:hidden;z-index:-1;padding:0;margin:0;pointer-events:none;flex-grow:inherit;flex-shrink:0;flex-basis:0;}
+.simplebar-height-auto-observer{box-sizing:inherit;display:block;opacity:0;top:0;left:0;height:1000%;width:1000%;min-height:1px;min-width:1px;z-index:-1;}
+.simplebar-height-auto-observer{position:absolute;overflow:hidden;pointer-events:none;}
+.table td,.table th{padding:4px 0.75rem;vertical-align:middle;}
+.nav-tabs .nav-link{border-radius:0!important;}
+.tab-content{border:1px solid #292e32;margin-top:-1px;}
+@media only screen and (max-width: 1450px){
+.table td,.table th{padding:4px 6px;}
+}
+
+
+.detail-page-container{line-height:22px;letter-spacing:0;color:var(--text-black);font-size:14px;}
+.center-main-container{display:flex;display:-webkit-flex;flex-wrap:wrap;}
+.center-content{width:calc(100% - 462px);margin-right:12px;}
+.right-sidebar{width:450px;max-height:calc(100vh - 72px);overflow-x:hidden;overflow-y:auto;}
+.bl-box{height:32px;width:72px;border-radius:4px;padding:5px 0;text-align:center;margin-right:4px;float:left;cursor:pointer;}
+.bl-box:last-child{margin-right:0!important;}
+.bl-box span{height:19px;color:var(--text-black);font-size:var(--font-caption);font-weight:var(--font-medium);text-align:center;}
+.bl-box .odds{height:22px;color:var(--text-black);font-weight:var(--font-medium);text-align:center;font-size:var(--font-odds);}
+ul,li{list-style:none;padding:0;margin:0;}
+.market-container{width:100%;display:flex;flex-wrap:wrap;}
+.btn-back,.btn-back:hover,.btn-back:focus,.btn-back:active{background-color:var(--bg-info);border-color:var(--bg-info);color:#fff;padding:4px;}
+.bl-box .odds{height:22px;color:var(--text-black);font-weight:var(--font-bold);text-align:center;font-size:var(--font-odds);}
+.back{background-color:#73BBEF; color:#000}
+.back:hover{background-color:#73BBEF; color:#000}
+.back2{background-color:#73BBEFCC;color:#000}
+.back1{background-color:#73BBEFCC;color:#000}
+.lay{background-color:#e16f9a;color:#000}
+.lay:hover{background-color:#e16f9a;color:#000}
+.lay1{background-color:#e16f9acc;color:#000}
+.lay2{background-color:#e16f9acc;color:#000}
+.bet-table{background-color:var(--bg-table);border-radius:8px 8px 0 0;margin-top:0;}
+.bet-table-header{height:40px;padding:8px;border-radius:0;display:flex;width:100%;}
+.bet-table-body{border-radius:0 0 5px 5px;}
+
+.bet-table-row{padding:6px 8px;display:flex;flex-wrap:wrap;width:100%;align-items:center;border-bottom:1px solid #d4d4d4;}
+.game-header{padding:16px;color:var(--text-white);width:100%;background-color:#434343;margin-bottom:5px;display:flex;flex-wrap:wrap;justify-content:space-between;}
+.game-header .game-header-name{max-width:calc(100% - 150px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-transform:uppercase;}
+.detail-page-container .market-4{margin-left:3px;margin-right:3px;min-width:calc(100% - 6px);flex:1;}
+.detail-page-container .market-6{min-width:calc(50% - 6px);max-width:calc(100% - 6px);margin-left:3px;margin-right:3px;flex:1;}
+.detail-page-container .bet-table-header{height:40px;padding:5px 8px;border-radius:8px 8px 0 0;background-color:#5e6a75;color:var(--text-table-header);width:100%;justify-content:space-between;align-items:center;cursor:pointer;}
+.detail-page-container .bet-table{margin-top:6px; margin-bottom:6px; background-color:#292e32;color:#e2e2e2;}
+.detail-page-container .bet-table-row{padding:2px 8px;}
+.bet-table-body .bet-table-row:first-child{padding:2px 8px;}
+.detail-page-container .max-bet{font-size:12px;float:right;text-align:right;}
+.detail-page-container .nation-name{width:calc(100% - 452px);padding-right:5px;}
+.detail-page-container .nation-name span:first-child{overflow:hidden;white-space:nowrap;text-overflow:ellipsis;max-width:100%;display:inline-block;}
+.detail-page-container .market-4 .bet-table-row-top .nation-name{width:calc(100% - 300px);}
+.detail-page-container .market-4 .bet-table-header .nation-name{width:calc(100% - 140px);}
+.detail-page-container .market-6 .nation-name{width:calc(100% - 224px);cursor:pointer;display:flex;flex-wrap:wrap;align-items:flex-end;}
+.detail-page-container .market-6 .bet-table-header .nation-name{width:calc(100% - 140px);}
+.detail-page-container .market-6 .fancy-tripple .bet-table-row{border-bottom:0;}
+.detail-page-container .market-6 .nation-name p{height:auto;width:100%;white-space:normal;overflow:unset;text-overflow:unset;}
+.detail-page-container .market-6 .nation-name p:last-child{width:100%;text-align:left;}
+.detail-page-container .market-6 .fancy-tripple{border-bottom:1px solid var(--bg-table-header);}
+.detail-page-container .market-6 .fancy-tripple:last-child{border-bottom:0;}
+.fancy-min-max{font-size:var(--font-small);text-align:right;width:72px;line-height:16px;color:var(--text-table);}
+.detail-page-container .fancy-min-max{color:#c9c9c9;}
+.detail-page-container .bl-title{height:30px;border-radius:4px;width:72px;text-align:center;line-height:30px;color:var(--text-black);font-weight:var(--font-medium);margin-right:4px;cursor:default;font-size:var(--font-caption);}
+.detail-page-container .bl-title.back{background-color:var(--back-hover);}
+.detail-page-container .bl-title.lay{background-color:var(--lay-hover);}
+.detail-page-container .bl-title:last-child{margin-right:0;}
+.detail-page-container .bl-box{width:72px;height:38px;padding:3px 0;display:flex;justify-content:center;align-items:center;flex-direction:column;}
+.detail-page-container .bl-box span{height:14px;line-height:14px;}
+.detail-page-container .bl-box .odds{height:16px;line-height:16px;margin-bottom:1px;}
+.detail-page-container .nation-name p{height:21px;color:#c9c9c9;margin-bottom:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:0;line-height:1; font-size: 13px;}
+.detail-page-container .nation-name p:last-child{margin-bottom:0;font-size:13px;line-height:18px;height:18px;}
+.tab-content > .tab-pane{padding:0;}
+.detail-page-container .card{margin-bottom:10px; background-color:#292e32;}
+.detail-page-container .card-body{padding:8px;}
+.detail-page-container .card-header{padding:4px 12px;background-color:#5e6a75;color:#fff;display:flex;justify-content:space-between;align-items:center;min-height:42px;}
+.detail-page-container .card-header .card-title{color:#fff;font-size:14px;margin-bottom:0;font-weight:normal;text-transform:uppercase;}
+.table th,.table td{font-size:12px;}
+.back-border{background-color:#cfe8fa !important; color:#000 ; border-bottom: 1px solid rgb(20, 20, 20);}
+.lay-border{background-color:#fd8ab6 !important;color:#000}
+@media only screen and (min-width: 1280px) and (max-width: 1599px){
+.center-content{width:calc(100% - 362px);}
+.right-sidebar{width:350px;}
+}
+.max-bet span{display:inline!important;}
+.bt0{border-top:0!important;}
+.tab-content{border:0;}
+.back-border{box-shadow:inset 3px 0 0px var(--back);border-left:0;}
+#matched-bet .back-border td{border:0;}
+.sport4,.sport4:hover,.sport4:focus,.sport4:active{background-color:var(--cricket);color:#fff!important;}
+.detail-page-container .card-header .card-title{color:var(--text-secondary);}
+.detail-page-container .card-header{background-color:var(--bg-secondary);color:var(--text-secondary);}
+
+@media (max-width: 1279px){
+.card-body{padding:0.5rem;}
+.table th,.table td{white-space:nowrap;}
+.nav-link{padding:0.5rem;}
+.center-content{width:100%;margin:0;}
+}
+@media only screen and (min-width: 320px) and (max-width: 1279px){
+.d-none-mobile{display:none!important;}
+.right-sidebar{width:100%;overflow:unset;max-height:unset;margin-left:3px;margin-right:3px;min-width:calc(100% - 6px);}
+.bet-table-header{border-radius:0;height:33px;padding:0 10px;line-height:33px;}
+.bet-table-header .btn-back{padding:2px 3px;}
+.bet-table-body{padding:5px;}
+.bet-table-row{padding:0;}
+.bl-box{width:48%;margin-top:0;margin-right:4%;}
+.bl-box span{font-size:var(--font-small);}
+.bl-box .odds{font-size:var(--font-small);font-weight:var(--font-bold);}
+.detail-page-container .bet-table-header{height:33px;line-height:1;padding:0 10px;border-radius:4px 4px 0 0;}
+.bet-table-mobile-team-name{line-height:17px;color:var(--text-black);overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;padding:0 10px;display:flex;justify-content:space-between;align-items:center;}
+.detail-page-container .bl-title{background-color:transparent;height:20px;line-height:20px;color:var(--text-table);width:15%;margin-right:2%;}
+.detail-page-container .bl-title:last-child{margin-right:0;}
+.bet-table-row{border-bottom:0;}
+.detail-page-container .bl-box{margin-top:0;width:15%;margin-right:2%;}
+.fancy-min-max{width:26%;}
+.detail-page-container .market-6 .bl-box{width:35%;}
+.detail-page-container{padding-bottom:65px;}
+.game-header .game-header-name{max-width:calc(100% - 65px);}
+}
+@media only screen and (min-width: 320px) and (max-width: 767px){
+.game-header{padding:6px;}
+.detail-page-container .market-4,.detail-page-container .market-6{min-width:calc(100% - 6px);}
+}
+@media only screen and (min-width: 768px) and (max-width: 992px){
+.bet-table-row{padding:16px 32px;}
+}
+@media only screen and (min-width: 1280px) and (max-width: 1366px){
+.detail-page-container .market-6{min-width:calc(100% - 6px);}
+}
+@media only screen and (min-width: 1280px){
+.d-none-desktop{display:none!important;}
+}
+
+table{border-collapse:collapse;border-spacing:0;}
+
+h6{font-family:inherit;font-weight:bolder;color:inherit;margin:0;}
+h6{font-size:16px;line-height:22px;}
+
+

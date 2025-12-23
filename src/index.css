@@ -1,0 +1,119 @@
+a {
+  cursor: pointer;
+}
+
+div:where(.swal2-container) div:where(.swal2-popup) {
+  background: #283144 !important;
+}
+div:where(.swal2-container) h2:where(.swal2-title) {
+  color: white !important;
+}
+div:where(.swal2-container) .swal2-html-container {
+  color: white !important;
+}
+.user-lock-book {
+  border: 1px solid white;
+  padding: 3px 2px;
+  border-radius: 3px;
+}
+
+.BACK {
+  background-color: #a7d0eb;
+}
+.LAY {
+  background-color: #f4bacf;
+}
+
+.rs-input {
+  background-color: rgb(40, 49, 68) !important;
+  color: #8894ab !important;
+}
+.rs-input-group.rs-input-group-inside {
+  background-color: rgb(40, 49, 68) !important;
+  border: 1px solid #546990 !important;
+  color: #8894ab !important;
+}
+.rs-picker-popup {
+  background-color: #283144 !important;
+}
+
+/* Loader start*/
+
+.animate-spin {
+  animation: spinner 1s linear infinite;
+}
+
+@keyframes spinner {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+/* Loader end*/
+
+.pl-withdraw {
+  color: #faffaf !important;
+}
+.pl-deposit {
+  color: #a8faff !important;
+}
+.text-green {
+  color: green !important;
+}
+.text-red {
+  color: red !important;
+}
+
+.bonus-table th,
+.bonus-table td {
+  text-align: center;
+}
+
+/*! Pagination */
+.rs-pagination-btn {
+  padding: 2px 8px !important;
+  min-width: 10px !important;
+  border-radius: 4px !important;
+  color: gainsboro !important;
+}
+
+.rs-pagination-btn:hover {
+  color: #283144 !important;
+}
+
+.rs-pagination-btn-active {
+  padding: 0px 7px !important;
+  min-width: 10px !important;
+  border-radius: 4px !important;
+}
+.rs-pagination-btn-active:hover {
+  color: gainsboro !important;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+@media (max-width: 512px) {
+  /* Mobile styles */
+  .responsive-button {
+    margin-top: 5px;
+    margin-left: 0;
+  }
+}
+
+@media (min-width: 513px) {
+  /* Desktop styles */
+  .responsive-button {
+    margin-left: 5px;
+    margin-top: 0;
+  }
+}
