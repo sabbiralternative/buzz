@@ -198,7 +198,7 @@ const Login = () => {
               >
                 <div className="mb-3">
                   <label htmlFor="loginname" className="form-label">
-                    Username
+                    Referral ID
                   </label>
                   <input
                     type="text"
@@ -208,7 +208,7 @@ const Login = () => {
                       required: true,
                     })}
                     name="username"
-                    placeholder="Enter your username"
+                    placeholder="Enter your Referral ID"
                   />
                 </div>
                 <div className="mb-3 form-password-toggle">
