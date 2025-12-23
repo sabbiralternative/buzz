@@ -240,7 +240,12 @@ const PNLReport = () => {
           <hr className="my-3" />
           {totalPNL ? (
             <p style={{ margin: "0px" }}>
-              Total PNL :{new Intl.NumberFormat("en-IN").format(totalPNL)}
+              Total PNL :{" "}
+              <span
+                className={`${totalPNL > 0 ? "text-success" : "text-danger"}`}
+              >
+                {new Intl.NumberFormat("en-IN").format(totalPNL)}
+              </span>
             </p>
           ) : null}
 
@@ -252,7 +257,6 @@ const PNLReport = () => {
                   <thead className="table-dark">
                     <tr>
                       <th>Event Name</th>
-
                       <th>Amount</th>
                     </tr>
                   </thead>
