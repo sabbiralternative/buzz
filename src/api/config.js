@@ -80,6 +80,7 @@ export const getSetApis = (setNoticeLoaded, baseUrl) => {
         API.addClient = data?.result?.endpoint?.addClient;
         API.otp = data?.result?.endpoint?.otp;
         API.campaign = data?.result?.endpoint?.campaign;
+        API.pnl = data?.result?.endpoint?.pnl;
 
         API.export = data?.result?.endpoint?.export;
         API.transferStatement = data?.result?.endpoint?.transferStatement;

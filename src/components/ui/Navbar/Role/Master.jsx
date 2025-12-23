@@ -736,6 +736,15 @@ const Master = () => {
               <div data-i18n="View Banners">Withdraw Report</div>
             </a>
           </li>
+          <li className="menu-item">
+            <a
+              onClick={() => handleNavigate("pnl-report")}
+              className="menu-link"
+            >
+              <i className="menu-icon tf-icons bx bxs-institution"></i>
+              <div data-i18n="View Banners">PNL Report</div>
+            </a>
+          </li>
 
           {/* <li className="menu-item">
             <a

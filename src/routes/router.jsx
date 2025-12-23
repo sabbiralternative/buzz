@@ -29,6 +29,7 @@ import DirectWithdrawReport from "../pages/Report/DirectWithdrawReport";
 import LastDepositReport from "../pages/Report/LastDepositReport";
 import AddCampaign from "../pages/Campaigns/AddCampaign";
 import ViewCampaigns from "../pages/Campaigns/ViewCampaigns";
+import PNLReport from "../pages/Report/PNLReport";
 
 export const router = createBrowserRouter(
   [
@@ -128,6 +129,10 @@ export const router = createBrowserRouter(
         {
           path: "/view-campaigns",
           element: <ViewCampaigns />,
+        },
+        {
+          path: "/pnl-report",
+          element: <PNLReport />,
         },
         /*Hyper Master Routes */
         ...HyperMasterRoutes,

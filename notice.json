@@ -35,7 +35,7 @@
       "orderList": "https://api7.live/api/exchange/diamond/open_bets.php",
       "inplayEvents": "https://cache7.live/api/exchange/diamond/inplayEvents",
       "group": "https://cache7.live/api/exchange/diamond/group",
-      "pnl": "https://api7.live/api/exchange/diamond/exposure.php",
+      "pnl": "https://admin.api7.live/api/buzz/pnl",
       "mobileStakes": "https://api7.live/api/account/settings/mobile-stakes",
       "oneClick": "https://api7.live/api/account/settings/one-click",
       "reportPnl": "https://api7.live/api/exchange/diamond/pnl.php",

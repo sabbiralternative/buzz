@@ -652,6 +652,16 @@ const MasterSidebar = () => {
             </a>
           </li>
 
+          <li className="menu-item">
+            <a
+              onClick={() => handleNavigate("pnl-report")}
+              className="menu-link"
+            >
+              <i className="menu-icon tf-icons bx bxs-institution"></i>
+              <div data-i18n="Completed Withdraw">PNL Report</div>
+            </a>
+          </li>
+
           {/* {adminRole === AdminRole.admin_staff && (
               <Fragment>
                 <li className="menu-item">

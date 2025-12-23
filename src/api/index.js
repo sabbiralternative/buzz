@@ -73,6 +73,7 @@ export const API = {
   complaint: "",
   addClient: "",
   campaign: "",
+  pnl: "",
 };
 
 export const Settings = {
