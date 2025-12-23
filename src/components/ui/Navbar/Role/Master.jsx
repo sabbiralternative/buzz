@@ -5,7 +5,7 @@ import useContextState from "../../../../hooks/useContextState";
 const Master = () => {
   const [navList, setNavList] = useState(null);
   const { adminRole } = useContextState();
-  const [depositReport, setDepositReport] = useState(false);
+  // const [depositReport, setDepositReport] = useState(false);
   const navigate = useNavigate();
 
   /* close modal click outside */
@@ -595,7 +595,7 @@ const Master = () => {
             </a>
           </li>
 
-          <li className="menu-item">
+          {/* <li className="menu-item">
             <a
               onClick={() => handleNavigate("1st-deposit-report")}
               className="menu-link"
@@ -612,9 +612,9 @@ const Master = () => {
               <i className="menu-icon tf-icons bx bxs-institution"></i>
               <div data-i18n="View Banners">Last Deposit Report</div>
             </a>
-          </li>
+          </li> */}
 
-          <a
+          {/* <a
             style={{
               display: "flex",
               alignItems: "center",
@@ -664,9 +664,9 @@ const Master = () => {
                   <i className="menu-icon tf-icons bx bxs-institution"></i>
                   <div data-i18n="View Banners">Last Deposit Report</div>
                 </a>
-              </li>
+              </li> */}
 
-              {/* <li className="menu-item">
+          {/* <li className="menu-item">
                         <a
                           onClick={() => handleNavigate("2nd-deposit-report")}
                           className="menu-link"
@@ -703,7 +703,7 @@ const Master = () => {
                         </a>
                       </li> */}
 
-              <li className="menu-item">
+          {/* <li className="menu-item">
                 <a
                   onClick={() => handleNavigate("no-deposit-report")}
                   className="menu-link"
@@ -725,7 +725,7 @@ const Master = () => {
                 </a>
               </li>
             </ul>
-          </a>
+          </a> */}
 
           <li className="menu-item">
             <a
@@ -737,7 +737,7 @@ const Master = () => {
             </a>
           </li>
 
-          <li className="menu-item">
+          {/* <li className="menu-item">
             <a
               onClick={() => handleNavigate("direct-deposit-report")}
               className="menu-link"
@@ -773,7 +773,7 @@ const Master = () => {
               <i className="menu-icon tf-icons bx bxs-institution"></i>
               <div data-i18n="View Banners">Client Branch Change Report</div>
             </a>
-          </li>
+          </li> */}
         </ul>
       </li>
 

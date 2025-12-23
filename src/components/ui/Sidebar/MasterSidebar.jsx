@@ -1,64 +1,15 @@
-import { Fragment, useEffect, useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import useContextState from "../../../hooks/useContextState";
-import { jwtDecode } from "jwt-decode";
-import { AdminRole } from "../../../constant/constant";
 
 const MasterSidebar = () => {
   const [sidebarItem, setSidebarItem] = useState(null);
-  const [permission, setPermission] = useState([]);
-
-  const [depositPermission, setDepositPermission] = useState(false);
-  const [withdrawPermission, setWithdrawPermission] = useState(false);
-  const [clientPermission, setClientPermission] = useState(false);
-  const [reportPermission, setReportPermission] = useState(false);
-  const [paymentPermission, setPaymentPermission] = useState(false);
-  const [bonusPermission, setBonusPermission] = useState(false);
-
   const navigate = useNavigate();
-  const { setShowSidebar, setShowSocialLink, adminRole, setAddChecker, token } =
-    useContextState();
-
+  const { setShowSidebar } = useContextState();
   const handleNavigate = (link) => {
     navigate(`/${link}`);
     setShowSidebar(false);
   };
-
-  useEffect(() => {
-    if (adminRole) {
-      if (adminRole === "branch_staff") {
-        const decode = jwtDecode(token);
-        const permissions = decode?.permissions;
-        setPermission(permissions);
-        const depositPermission = permissions?.includes("deposit") ?? false;
-        const withdrawPermission = permissions?.includes("withdraw") ?? false;
-        const clientPermission = permissions?.includes("client") ?? false;
-        const reportPermission = permissions?.includes("report") ?? false;
-        const paymentPermission = permissions?.includes("payment") ?? false;
-        const bonusPermission = permissions?.includes("bonus") ?? false;
-        setDepositPermission(depositPermission);
-        setWithdrawPermission(withdrawPermission);
-        setClientPermission(clientPermission);
-        setReportPermission(reportPermission);
-        setPaymentPermission(paymentPermission);
-        setBonusPermission(bonusPermission);
-      } else {
-        setPermission([
-          "deposit",
-          "withdraw",
-          "client",
-          "report",
-          "payment",
-          "bonus",
-        ]);
-        setDepositPermission(true);
-        setWithdrawPermission(true);
-        setClientPermission(true);
-        setReportPermission(true);
-        setPaymentPermission(true);
-      }
-    }
-  }, [adminRole, token]);
 
   const handleOpenSidebarItem = (item) => {
     if (sidebarItem === item) {
@@ -70,19 +21,18 @@ const MasterSidebar = () => {
 
   return (
     <ul className="menu-inner overflow-auto" style={{ marginLeft: "0px" }}>
-      {adminRole !== "branch_staff" && (
-        <li className="menu-item">
-          <Link
-            onClick={() => setShowSidebar(false)}
-            to="/"
-            className="menu-link"
-          >
-            <i className="menu-icon tf-icons bx bx-home-circle"></i>
-            <div data-i18n="Dashboards">Dashboard</div>
-          </Link>
-        </li>
-      )}
-      {adminRole === AdminRole.punter && (
+      <li className="menu-item">
+        <Link
+          onClick={() => setShowSidebar(false)}
+          to="/"
+          className="menu-link"
+        >
+          <i className="menu-icon tf-icons bx bx-home-circle"></i>
+          <div data-i18n="Dashboards">Dashboard</div>
+        </Link>
+      </li>
+
+      {/* {adminRole === AdminRole.punter && (
         <li
           className={`menu-item ${sidebarItem === "campaigns" ? "open" : ""}`}
         >
@@ -117,32 +67,29 @@ const MasterSidebar = () => {
             </li>
           </ul>
         </li>
-      )}
+      )} */}
 
-      {adminRole === "punter" ||
-      (adminRole === "admin_staff" && clientPermission) ||
-      (adminRole === "branch_staff" && clientPermission) ? (
-        <li className={`menu-item ${sidebarItem === "client" ? "open" : ""}`}>
-          <a
-            onClick={() => handleOpenSidebarItem("client")}
-            className="menu-link menu-toggle"
-          >
-            <i className="menu-icon tf-icons bx bx-layout"></i>
-            <div data-i18n="Clients">Clients</div>
-          </a>
+      <li className={`menu-item ${sidebarItem === "client" ? "open" : ""}`}>
+        <a
+          onClick={() => handleOpenSidebarItem("client")}
+          className="menu-link menu-toggle"
+        >
+          <i className="menu-icon tf-icons bx bx-layout"></i>
+          <div data-i18n="Clients">Clients</div>
+        </a>
 
-          <ul className="menu-sub">
-            <li className="menu-item">
-              <a
-                onClick={() => handleNavigate("view-client")}
-                className="menu-link"
-              >
-                <i className="menu-icon tf-icons bx bxs-user"></i>
-                <div data-i18n="View Clients">View Clients</div>
-              </a>
-            </li>
+        <ul className="menu-sub">
+          <li className="menu-item">
+            <a
+              onClick={() => handleNavigate("view-client")}
+              className="menu-link"
+            >
+              <i className="menu-icon tf-icons bx bxs-user"></i>
+              <div data-i18n="View Clients">View Clients</div>
+            </a>
+          </li>
 
-            <li className="menu-item">
+          {/* <li className="menu-item">
               <a
                 onClick={() => handleNavigate("add-client")}
                 className="menu-link"
@@ -150,28 +97,28 @@ const MasterSidebar = () => {
                 <i className="menu-icon tf-icons bx bxs-user"></i>
                 <div data-i18n="Add Client">Add Client</div>
               </a>
-            </li>
-            <li className="menu-item">
-              <Link
-                onClick={() => setShowSidebar(false)}
-                to="/clients-with-balance"
-                className="menu-link"
-              >
-                <i className="menu-icon tf-icons bx bxs-institution"></i>
-                <div data-i18n="View Branches">Clients with balance</div>
-              </Link>
-            </li>
-            <li className="menu-item">
-              <Link
-                onClick={() => setShowSidebar(false)}
-                to="/all-client"
-                className="menu-link"
-              >
-                <i className="menu-icon tf-icons bx bxs-institution"></i>
-                <div data-i18n="View Branches">All Client</div>
-              </Link>
-            </li>
-            {/* <li className="menu-item">
+            </li> */}
+          <li className="menu-item">
+            <Link
+              onClick={() => setShowSidebar(false)}
+              to="/clients-with-balance"
+              className="menu-link"
+            >
+              <i className="menu-icon tf-icons bx bxs-institution"></i>
+              <div data-i18n="View Branches">Clients with balance</div>
+            </Link>
+          </li>
+          <li className="menu-item">
+            <Link
+              onClick={() => setShowSidebar(false)}
+              to="/all-client"
+              className="menu-link"
+            >
+              <i className="menu-icon tf-icons bx bxs-institution"></i>
+              <div data-i18n="View Branches">All Client</div>
+            </Link>
+          </li>
+          {/* <li className="menu-item">
               <Link
                 onClick={() => setShowSidebar(false)}
                 to="/active-client"
@@ -201,9 +148,8 @@ const MasterSidebar = () => {
                 <div data-i18n="View Branches">Suspended Client</div>
               </Link>
             </li> */}
-          </ul>
-        </li>
-      ) : null}
+        </ul>
+      </li>
 
       {/* {adminRole === "punter" && (
         <li
@@ -454,7 +400,7 @@ const MasterSidebar = () => {
         </li>
       )} */}
 
-      {adminRole === AdminRole.admin_staff && (
+      {/* {adminRole === AdminRole.admin_staff && (
         <li className={`menu-item ${sidebarItem === "exposure" ? "open" : ""}`}>
           <a
             onClick={() => handleOpenSidebarItem("exposure")}
@@ -488,7 +434,7 @@ const MasterSidebar = () => {
             </li>
           </ul>
         </li>
-      )}
+      )} */}
 
       {/* {adminRole === "punter" && (
         <>
@@ -601,39 +547,37 @@ const MasterSidebar = () => {
         </>
       )} */}
 
-      {adminRole === "punter" ||
-      (adminRole === "branch_staff" && paymentPermission) ||
-      (adminRole === AdminRole.admin_staff && paymentPermission) ? (
-        <li
-          onClick={() => handleOpenSidebarItem("report")}
-          className={`menu-item ${sidebarItem === "report" ? "open" : ""}`}
-        >
-          <a className="menu-link menu-toggle">
-            <i className="menu-icon tf-icons bx bx-layout"></i>
-            <div data-i18n="Withdraw">Report</div>
-          </a>
+      <li
+        onClick={() => handleOpenSidebarItem("report")}
+        className={`menu-item ${sidebarItem === "report" ? "open" : ""}`}
+      >
+        <a className="menu-link menu-toggle">
+          <i className="menu-icon tf-icons bx bx-layout"></i>
+          <div data-i18n="Withdraw">Report</div>
+        </a>
 
-          <ul className="menu-sub">
-            <li className="menu-item">
-              <a
-                onClick={() => handleNavigate("client-report")}
-                className="menu-link"
-              >
-                <i className="menu-icon tf-icons bx bxs-institution"></i>
-                <div data-i18n="Pending Withdraw">Client Report</div>
-              </a>
-            </li>
+        <ul className="menu-sub">
+          <li className="menu-item">
+            <a
+              onClick={() => handleNavigate("client-report")}
+              className="menu-link"
+            >
+              <i className="menu-icon tf-icons bx bxs-institution"></i>
+              <div data-i18n="Pending Withdraw">Client Report</div>
+            </a>
+          </li>
 
-            <li className="menu-item">
-              <a
-                onClick={() => handleNavigate("deposit-report")}
-                className="menu-link"
-              >
-                <i className="menu-icon tf-icons bx bxs-institution"></i>
-                <div data-i18n="Completed Withdraw">Deposit Report</div>
-              </a>
-            </li>
-            <li className="menu-item">
+          <li className="menu-item">
+            <a
+              onClick={() => handleNavigate("deposit-report")}
+              className="menu-link"
+            >
+              <i className="menu-icon tf-icons bx bxs-institution"></i>
+              <div data-i18n="Completed Withdraw">Deposit Report</div>
+            </a>
+          </li>
+
+          {/* <li className="menu-item">
               <a
                 onClick={() => handleNavigate("1st-deposit-report")}
                 className="menu-link"
@@ -650,11 +594,9 @@ const MasterSidebar = () => {
                 <i className="menu-icon tf-icons bx bxs-institution"></i>
                 <div data-i18n="Completed Withdraw">Last Deposit Report</div>
               </a>
-            </li>
+            </li> */}
 
-            {adminRole === AdminRole.admin_staff && (
-              <>
-                {/* <li className="menu-item">
+          {/* <li className="menu-item">
                   <a
                     onClick={() => handleNavigate("2nd-deposit-report")}
                     className="menu-link"
@@ -690,7 +632,7 @@ const MasterSidebar = () => {
                     <div data-i18n="Completed Withdraw">5th Deposit Report</div>
                   </a>
                 </li> */}
-                <li className="menu-item">
+          {/* <li className="menu-item">
                   <a
                     onClick={() => handleNavigate("no-deposit-report")}
                     className="menu-link"
@@ -698,21 +640,19 @@ const MasterSidebar = () => {
                     <i className="menu-icon tf-icons bx bxs-institution"></i>
                     <div data-i18n="Completed Withdraw">No Deposit Report</div>
                   </a>
-                </li>
-              </>
-            )}
+                </li> */}
 
-            <li className="menu-item">
-              <a
-                onClick={() => handleNavigate("withdraw-report")}
-                className="menu-link"
-              >
-                <i className="menu-icon tf-icons bx bxs-institution"></i>
-                <div data-i18n="Completed Withdraw">Withdraw Report</div>
-              </a>
-            </li>
+          <li className="menu-item">
+            <a
+              onClick={() => handleNavigate("withdraw-report")}
+              className="menu-link"
+            >
+              <i className="menu-icon tf-icons bx bxs-institution"></i>
+              <div data-i18n="Completed Withdraw">Withdraw Report</div>
+            </a>
+          </li>
 
-            {adminRole === AdminRole.admin_staff && (
+          {/* {adminRole === AdminRole.admin_staff && (
               <Fragment>
                 <li className="menu-item">
                   <a
@@ -737,9 +677,9 @@ const MasterSidebar = () => {
                   </a>
                 </li>
               </Fragment>
-            )}
+            )} */}
 
-            <li className="menu-item">
+          {/* <li className="menu-item">
               <a
                 onClick={() => handleNavigate("transfer-statement")}
                 className="menu-link"
@@ -747,11 +687,11 @@ const MasterSidebar = () => {
                 <i className="menu-icon tf-icons bx bxs-institution"></i>
                 <div data-i18n="Completed Withdraw">Transfer Statement</div>
               </a>
-            </li>
-          </ul>
-        </li>
-      ) : null}
-      {adminRole !== AdminRole.punter &&
+            </li> */}
+        </ul>
+      </li>
+
+      {/* {adminRole !== AdminRole.punter &&
         adminRole !== AdminRole.branch_staff && (
           <li
             onClick={() => handleOpenSidebarItem("setting")}
@@ -878,7 +818,7 @@ const MasterSidebar = () => {
               )}
             </ul>
           </li>
-        )}
+        )} */}
     </ul>
   );
 };

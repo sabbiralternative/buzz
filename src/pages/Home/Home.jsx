@@ -62,6 +62,8 @@ const Home = () => {
     return date < start || date > today;
   };
 
+  console.log(balanceData);
+
   return (
     <div className="container-xxl flex-grow-1 container-p-y">
       <div style={{ marginBottom: "10px" }}>
