@@ -1,10 +1,10 @@
-import HyperMaster from "./Role/HyperMaster";
+// import HyperMaster from "./Role/HyperMaster";
 import Master from "./Role/Master";
-import useContextState from "../../../hooks/useContextState";
-import { AdminRole } from "../../../constant/constant";
+// import useContextState from "../../../hooks/useContextState";
+// import { AdminRole } from "../../../constant/constant";
 
 const NavListItem = () => {
-  const { adminRole } = useContextState();
+  // const { adminRole } = useContextState();
   // a23moneyadmin hyper_master
   // a23branch1
 
@@ -21,16 +21,13 @@ const NavListItem = () => {
       <div className="container-xxl d-flex h-100">
         <a className="menu-horizontal-prev d-none"></a>
         <div className="menu-horizontal-wrapper">
-          {adminRole === "hyper_master" ||
+          {/* {adminRole === "hyper_master" ||
           adminRole === "admin_master" ||
           adminRole === AdminRole.super_master ? (
             <HyperMaster />
-          ) : null}
-          {adminRole === "punter" ||
-          adminRole === "admin_staff" ||
-          adminRole === "branch_staff" ? (
-            <Master />
-          ) : null}
+          ) : null} */}
+
+          <Master />
         </div>
         <a className="menu-horizontal-next d-none"></a>
       </div>

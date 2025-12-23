@@ -6,13 +6,23 @@ import useContextState from "../../hooks/useContextState";
 import DashboardDW from "./DashboardDW";
 import { jwtDecode } from "jwt-decode";
 import Loader from "../../components/ui/Loader/Loader";
+import { DatePicker } from "rsuite";
+import moment from "moment";
+import { useUser } from "../../hooks/use-user";
 
 const Home = () => {
+  const today = new Date();
+  const { user } = useUser();
+  const [date, setDate] = useState(new Date());
   const [depositPermission, setDepositPermission] = useState(false);
   const [withdrawPermission, setWithdrawPermission] = useState(false);
   const { data } = useGetIndex({ type: "getDashboardDW" });
   const { adminRole, token } = useContextState();
-  const { balanceData, isLoading, isPending } = useBalance();
+  const { balanceData, isLoading, isPending } = useBalance({
+    date: moment(date).format("YYYY-MM-DD"),
+    user_id: user?.user_id,
+    role: user?.role,
+  });
   const defineBalanceColor = (amount) => {
     if (amount) {
       const parseAmount = parseFloat(amount);
@@ -45,8 +55,26 @@ const Home = () => {
     }
   }, [adminRole, token]);
 
+  const disableOutsideLast14Days = (date) => {
+    const start = new Date();
+    start.setDate(today.getDate() - 14);
+
+    return date < start || date > today;
+  };
+
   return (
     <div className="container-xxl flex-grow-1 container-p-y">
+      <div style={{ marginBottom: "10px" }}>
+        <DatePicker
+          style={{ width: "100%", maxWidth: "300px" }}
+          format="dd-MM-yyyy"
+          editable={false}
+          value={date}
+          onChange={setDate}
+          disabledDate={disableOutsideLast14Days}
+          block
+        />
+      </div>
       {adminRole &&
         adminRole !== "admin_staff" &&
         adminRole !== "branch_staff" && (

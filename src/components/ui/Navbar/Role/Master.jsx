@@ -1,25 +1,11 @@
-import { Fragment, useEffect, useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import useContextState from "../../../../hooks/useContextState";
-import { jwtDecode } from "jwt-decode";
-import { AdminRole } from "../../../../constant/constant";
 
 const Master = () => {
   const [navList, setNavList] = useState(null);
-
-  const [depositPermission, setDepositPermission] = useState(false);
-  const [bonusPermission, setBonusPermission] = useState(false);
-
-  const [withdrawPermission, setWithdrawPermission] = useState(false);
-  const [clientPermission, setClientPermission] = useState(false);
-  const [reportPermission, setReportPermission] = useState(false);
-  const [, setPaymentPermission] = useState(false);
-  const [siteNotification, setSiteNotification] = useState(false);
-  const [showBonus, setShowBonus] = useState(false);
-  const { readOnly, setShowSocialLink, adminRole, token } = useContextState();
-
+  const { adminRole } = useContextState();
   const [depositReport, setDepositReport] = useState(false);
-
   const navigate = useNavigate();
 
   /* close modal click outside */
@@ -28,38 +14,6 @@ const Master = () => {
     navigate(`/${link}`);
     setNavList(null);
   };
-
-  useEffect(() => {
-    if (adminRole) {
-      if (
-        adminRole === AdminRole.branch_staff ||
-        adminRole === AdminRole.admin_staff
-      ) {
-        const decode = jwtDecode(token);
-        const permissions = decode?.permissions;
-
-        const depositPermission = permissions?.includes("deposit") ?? false;
-        const withdrawPermission = permissions?.includes("withdraw") ?? false;
-        const clientPermission = permissions?.includes("client") ?? false;
-        const reportPermission = permissions?.includes("report") ?? false;
-        const paymentPermission = permissions?.includes("payment") ?? false;
-        const bonusPermission = permissions?.includes("bonus") ?? false;
-
-        setDepositPermission(depositPermission);
-        setWithdrawPermission(withdrawPermission);
-        setClientPermission(clientPermission);
-        setReportPermission(reportPermission);
-        setPaymentPermission(paymentPermission);
-        setBonusPermission(bonusPermission);
-      } else {
-        setDepositPermission(true);
-        setWithdrawPermission(true);
-        setClientPermission(true);
-        setReportPermission(true);
-        setPaymentPermission(true);
-      }
-    }
-  }, [adminRole, token]);
 
   return (
     <ul className="menu-inner" style={{ marginLeft: "0px" }}>
@@ -72,7 +26,7 @@ const Master = () => {
         </li>
       )}
 
-      <li
+      {/* <li
         onMouseEnter={() => setNavList("campaigns")}
         onMouseLeave={() => setNavList(null)}
         className={`menu-item ${navList === "campaigns" ? "open" : ""}`}
@@ -109,33 +63,30 @@ const Master = () => {
             </a>
           </li>
         </ul>
-      </li>
+      </li> */}
 
-      {adminRole === "punter" ||
-      (adminRole === "admin_staff" && clientPermission) ||
-      (adminRole === "branch_staff" && clientPermission) ? (
-        <li
-          onMouseEnter={() => setNavList("client")}
-          onMouseLeave={() => setNavList(null)}
-          className={`menu-item ${navList === "client" ? "open" : ""}`}
-        >
-          <a className="menu-link menu-toggle">
-            <i className="menu-icon tf-icons bx bx-layout"></i>
-            <div data-i18n="Clients">Clients</div>
-          </a>
+      <li
+        onMouseEnter={() => setNavList("client")}
+        onMouseLeave={() => setNavList(null)}
+        className={`menu-item ${navList === "client" ? "open" : ""}`}
+      >
+        <a className="menu-link menu-toggle">
+          <i className="menu-icon tf-icons bx bx-layout"></i>
+          <div data-i18n="Clients">Clients</div>
+        </a>
 
-          <ul className="menu-sub">
-            <li className="menu-item">
-              <a
-                onClick={() => handleNavigate("view-client")}
-                className="menu-link"
-              >
-                <i className="menu-icon tf-icons bx bxs-user"></i>
-                <div data-i18n="View Clients">View Clients</div>
-              </a>
-            </li>
-            {!readOnly && adminRole !== "admin_staff" && (
-              <li className="menu-item">
+        <ul className="menu-sub">
+          <li className="menu-item">
+            <a
+              onClick={() => handleNavigate("view-client")}
+              className="menu-link"
+            >
+              <i className="menu-icon tf-icons bx bxs-user"></i>
+              <div data-i18n="View Clients">View Clients</div>
+            </a>
+          </li>
+
+          {/* <li className="menu-item">
                 <a
                   onClick={() => handleNavigate("add-client")}
                   className="menu-link"
@@ -143,29 +94,28 @@ const Master = () => {
                   <i className="menu-icon tf-icons bx bxs-user"></i>
                   <div data-i18n="Add Client">Add Client</div>
                 </a>
-              </li>
-            )}
+              </li> */}
 
-            <li className="menu-item">
-              <a
-                onClick={() => handleNavigate("clients-with-balance")}
-                className="menu-link"
-              >
-                <i className="menu-icon tf-icons bx bxs-user"></i>
-                <div data-i18n="Add Client">Clients with balance</div>
-              </a>
-            </li>
+          <li className="menu-item">
+            <a
+              onClick={() => handleNavigate("clients-with-balance")}
+              className="menu-link"
+            >
+              <i className="menu-icon tf-icons bx bxs-user"></i>
+              <div data-i18n="Add Client">Clients with balance</div>
+            </a>
+          </li>
 
-            <li className="menu-item">
-              <a
-                onClick={() => handleNavigate("all-client")}
-                className="menu-link"
-              >
-                <i className="menu-icon tf-icons bx bxs-user"></i>
-                <div data-i18n="Add Client">All Clients</div>
-              </a>
-            </li>
-            {/* <li className="menu-item">
+          <li className="menu-item">
+            <a
+              onClick={() => handleNavigate("all-client")}
+              className="menu-link"
+            >
+              <i className="menu-icon tf-icons bx bxs-user"></i>
+              <div data-i18n="Add Client">All Clients</div>
+            </a>
+          </li>
+          {/* <li className="menu-item">
               <a
                 onClick={() => handleNavigate("active-client")}
                 className="menu-link"
@@ -192,9 +142,8 @@ const Master = () => {
                 <div data-i18n="Add Client">Suspended Clients</div>
               </a>
             </li> */}
-          </ul>
-        </li>
-      ) : null}
+        </ul>
+      </li>
 
       {/* {adminRole === "punter" ||
         (adminRole === "branch_staff" && paymentPermission) ||
@@ -450,7 +399,7 @@ const Master = () => {
           </li>
         )} */}
 
-      {adminRole === AdminRole.admin_staff && (
+      {/* {adminRole === AdminRole.admin_staff && (
         <li
           onMouseEnter={() => setNavList("exposure")}
           onMouseLeave={() => setNavList(null)}
@@ -490,7 +439,7 @@ const Master = () => {
             </li>
           </ul>
         </li>
-      )}
+      )} */}
 
       {/* {adminRole === "punter" && (
         <>
@@ -607,130 +556,117 @@ const Master = () => {
           </li>
         </>
       )} */}
-      {adminRole === "punter" ||
-      (adminRole === "admin_staff" && reportPermission) ||
-      (adminRole === "branch_staff" && reportPermission) ? (
-        <li
-          onMouseEnter={() => setNavList("report")}
-          onMouseLeave={() => setNavList(null)}
-          className={`menu-item ${navList === "report" ? "open" : ""}`}
+
+      <li
+        onMouseEnter={() => setNavList("report")}
+        onMouseLeave={() => setNavList(null)}
+        className={`menu-item ${navList === "report" ? "open" : ""}`}
+      >
+        <a
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+          className="menu-link menu-toggle"
         >
+          <i className="menu-icon tf-icons bx bx-layout"></i>
+          <div data-i18n="Settings">Report</div>
+        </a>
+
+        <ul className="menu-sub">
+          <li className="menu-item">
+            <a
+              onClick={() => handleNavigate("client-report")}
+              className="menu-link"
+            >
+              <i className="menu-icon tf-icons bx bxs-institution"></i>
+              <div data-i18n="View Banners">Client Report</div>
+            </a>
+          </li>
+
+          <li className="menu-item">
+            <a
+              onClick={() => handleNavigate("deposit-report")}
+              className="menu-link"
+            >
+              <i className="menu-icon tf-icons bx bxs-institution"></i>
+              <div data-i18n="View Banners">Deposit Report</div>
+            </a>
+          </li>
+
+          <li className="menu-item">
+            <a
+              onClick={() => handleNavigate("1st-deposit-report")}
+              className="menu-link"
+            >
+              <i className="menu-icon tf-icons bx bxs-institution"></i>
+              <div data-i18n="View Banners">1st Deposit Report</div>
+            </a>
+          </li>
+          <li className="menu-item">
+            <a
+              onClick={() => handleNavigate("last-deposit-report")}
+              className="menu-link"
+            >
+              <i className="menu-icon tf-icons bx bxs-institution"></i>
+              <div data-i18n="View Banners">Last Deposit Report</div>
+            </a>
+          </li>
+
           <a
             style={{
               display: "flex",
               alignItems: "center",
-              justifyContent: "center",
+              justifyContent: "start",
             }}
+            onMouseEnter={() => setDepositReport(true)}
+            onMouseLeave={() => setDepositReport(false)}
             className="menu-link menu-toggle"
           >
             <i className="menu-icon tf-icons bx bx-layout"></i>
-            <div data-i18n="Settings">Report</div>
-          </a>
-
-          <ul className="menu-sub">
-            {clientPermission && (
+            <div data-i18n="Settings">Deposit Report</div>
+            <ul
+              className="menu-sub"
+              style={{
+                display: depositReport ? "block" : "none",
+                right: "100%",
+                top: "0px",
+                left: "-100%",
+                zIndex: "99999",
+                background: "#273143",
+              }}
+            >
               <li className="menu-item">
                 <a
-                  onClick={() => handleNavigate("client-report")}
+                  onClick={() => handleNavigate("deposit-report")}
                   className="menu-link"
                 >
                   <i className="menu-icon tf-icons bx bxs-institution"></i>
-                  <div data-i18n="View Banners">Client Report</div>
+                  <div data-i18n="View Banners">Deposit Report</div>
                 </a>
               </li>
-            )}
-            {adminRole === AdminRole.punter ||
-            adminRole === AdminRole.branch_staff ? (
-              <>
-                <li className="menu-item">
-                  <a
-                    onClick={() => handleNavigate("deposit-report")}
-                    className="menu-link"
-                  >
-                    <i className="menu-icon tf-icons bx bxs-institution"></i>
-                    <div data-i18n="View Banners">Deposit Report</div>
-                  </a>
-                </li>
 
-                <li className="menu-item">
-                  <a
-                    onClick={() => handleNavigate("1st-deposit-report")}
-                    className="menu-link"
-                  >
-                    <i className="menu-icon tf-icons bx bxs-institution"></i>
-                    <div data-i18n="View Banners">1st Deposit Report</div>
-                  </a>
-                </li>
-                <li className="menu-item">
-                  <a
-                    onClick={() => handleNavigate("last-deposit-report")}
-                    className="menu-link"
-                  >
-                    <i className="menu-icon tf-icons bx bxs-institution"></i>
-                    <div data-i18n="View Banners">Last Deposit Report</div>
-                  </a>
-                </li>
-              </>
-            ) : null}
-
-            {adminRole === AdminRole.admin_staff && (
-              <a
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "start",
-                }}
-                onMouseEnter={() => setDepositReport(true)}
-                onMouseLeave={() => setDepositReport(false)}
-                className="menu-link menu-toggle"
-              >
-                <i className="menu-icon tf-icons bx bx-layout"></i>
-                <div data-i18n="Settings">Deposit Report</div>
-                <ul
-                  className="menu-sub"
-                  style={{
-                    display: depositReport ? "block" : "none",
-                    right: "100%",
-                    top: "0px",
-                    left: "-100%",
-                    zIndex: "99999",
-                    background: "#273143",
-                  }}
+              <li className="menu-item">
+                <a
+                  onClick={() => handleNavigate("1st-deposit-report")}
+                  className="menu-link"
                 >
-                  {depositPermission && (
-                    <>
-                      <li className="menu-item">
-                        <a
-                          onClick={() => handleNavigate("deposit-report")}
-                          className="menu-link"
-                        >
-                          <i className="menu-icon tf-icons bx bxs-institution"></i>
-                          <div data-i18n="View Banners">Deposit Report</div>
-                        </a>
-                      </li>
+                  <i className="menu-icon tf-icons bx bxs-institution"></i>
+                  <div data-i18n="View Banners">1st Deposit Report</div>
+                </a>
+              </li>
+              <li className="menu-item">
+                <a
+                  onClick={() => handleNavigate("last-deposit-report")}
+                  className="menu-link"
+                >
+                  <i className="menu-icon tf-icons bx bxs-institution"></i>
+                  <div data-i18n="View Banners">Last Deposit Report</div>
+                </a>
+              </li>
 
-                      <li className="menu-item">
-                        <a
-                          onClick={() => handleNavigate("1st-deposit-report")}
-                          className="menu-link"
-                        >
-                          <i className="menu-icon tf-icons bx bxs-institution"></i>
-                          <div data-i18n="View Banners">1st Deposit Report</div>
-                        </a>
-                      </li>
-                      <li className="menu-item">
-                        <a
-                          onClick={() => handleNavigate("last-deposit-report")}
-                          className="menu-link"
-                        >
-                          <i className="menu-icon tf-icons bx bxs-institution"></i>
-                          <div data-i18n="View Banners">
-                            Last Deposit Report
-                          </div>
-                        </a>
-                      </li>
-
-                      {/* <li className="menu-item">
+              {/* <li className="menu-item">
                         <a
                           onClick={() => handleNavigate("2nd-deposit-report")}
                           className="menu-link"
@@ -767,93 +703,81 @@ const Master = () => {
                         </a>
                       </li> */}
 
-                      <li className="menu-item">
-                        <a
-                          onClick={() => handleNavigate("no-deposit-report")}
-                          className="menu-link"
-                        >
-                          <i className="menu-icon tf-icons bx bxs-institution"></i>
-                          <div data-i18n="View Banners">No Deposit Report</div>
-                        </a>
-                      </li>
-
-                      <li className="menu-item">
-                        <a
-                          onClick={() =>
-                            handleNavigate("no-deposit-report-last-15-days")
-                          }
-                          className="menu-link"
-                        >
-                          <i className="menu-icon tf-icons bx bxs-institution"></i>
-                          <div data-i18n="View Banners">
-                            No deposit last 15 days
-                          </div>
-                        </a>
-                      </li>
-                    </>
-                  )}
-                </ul>
-              </a>
-            )}
-
-            {withdrawPermission && (
               <li className="menu-item">
                 <a
-                  onClick={() => handleNavigate("withdraw-report")}
+                  onClick={() => handleNavigate("no-deposit-report")}
                   className="menu-link"
                 >
                   <i className="menu-icon tf-icons bx bxs-institution"></i>
-                  <div data-i18n="View Banners">Withdraw Report</div>
+                  <div data-i18n="View Banners">No Deposit Report</div>
                 </a>
               </li>
-            )}
 
-            {adminRole === AdminRole.admin_staff && (
-              <Fragment>
-                <li className="menu-item">
-                  <a
-                    onClick={() => handleNavigate("direct-deposit-report")}
-                    className="menu-link"
-                  >
-                    <i className="menu-icon tf-icons bx bxs-institution"></i>
-                    <div data-i18n="View Banners">Direct Deposit Report</div>
-                  </a>
-                </li>
-                <li className="menu-item">
-                  <a
-                    onClick={() => handleNavigate("direct-withdraw-report")}
-                    className="menu-link"
-                  >
-                    <i className="menu-icon tf-icons bx bxs-institution"></i>
-                    <div data-i18n="View Banners">Direct Withdraw Report</div>
-                  </a>
-                </li>
-              </Fragment>
-            )}
+              <li className="menu-item">
+                <a
+                  onClick={() =>
+                    handleNavigate("no-deposit-report-last-15-days")
+                  }
+                  className="menu-link"
+                >
+                  <i className="menu-icon tf-icons bx bxs-institution"></i>
+                  <div data-i18n="View Banners">No deposit last 15 days</div>
+                </a>
+              </li>
+            </ul>
+          </a>
 
-            <li className="menu-item">
-              <a
-                onClick={() => handleNavigate("transfer-statement")}
-                className="menu-link"
-              >
-                <i className="menu-icon tf-icons bx bxs-institution"></i>
-                <div data-i18n="View Banners">Transfer Statement</div>
-              </a>
-            </li>
-            <li className="menu-item">
-              <a
-                onClick={() => handleNavigate("client-branch-change-report")}
-                className="menu-link"
-              >
-                <i className="menu-icon tf-icons bx bxs-institution"></i>
-                <div data-i18n="View Banners">Client Branch Change Report</div>
-              </a>
-            </li>
-          </ul>
-        </li>
-      ) : null}
+          <li className="menu-item">
+            <a
+              onClick={() => handleNavigate("withdraw-report")}
+              className="menu-link"
+            >
+              <i className="menu-icon tf-icons bx bxs-institution"></i>
+              <div data-i18n="View Banners">Withdraw Report</div>
+            </a>
+          </li>
 
-      {adminRole != AdminRole.punter &&
+          <li className="menu-item">
+            <a
+              onClick={() => handleNavigate("direct-deposit-report")}
+              className="menu-link"
+            >
+              <i className="menu-icon tf-icons bx bxs-institution"></i>
+              <div data-i18n="View Banners">Direct Deposit Report</div>
+            </a>
+          </li>
+          <li className="menu-item">
+            <a
+              onClick={() => handleNavigate("direct-withdraw-report")}
+              className="menu-link"
+            >
+              <i className="menu-icon tf-icons bx bxs-institution"></i>
+              <div data-i18n="View Banners">Direct Withdraw Report</div>
+            </a>
+          </li>
+
+          <li className="menu-item">
+            <a
+              onClick={() => handleNavigate("transfer-statement")}
+              className="menu-link"
+            >
+              <i className="menu-icon tf-icons bx bxs-institution"></i>
+              <div data-i18n="View Banners">Transfer Statement</div>
+            </a>
+          </li>
+          <li className="menu-item">
+            <a
+              onClick={() => handleNavigate("client-branch-change-report")}
+              className="menu-link"
+            >
+              <i className="menu-icon tf-icons bx bxs-institution"></i>
+              <div data-i18n="View Banners">Client Branch Change Report</div>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+      {/* {adminRole != AdminRole.punter &&
         adminRole !== AdminRole.branch_staff && (
           <li
             onMouseEnter={() => setNavList("setting")}
@@ -1024,7 +948,7 @@ const Master = () => {
               )}
             </ul>
           </li>
-        )}
+        )} */}
     </ul>
   );
 };
