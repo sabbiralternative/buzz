@@ -6,7 +6,6 @@ import axios from "axios";
 import useContextState from "../../hooks/useContextState";
 import { useState } from "react";
 // import ShowImage from "../../components/modal/ShowImage";
-import { useNavigate } from "react-router-dom";
 import moment from "moment";
 import { defaultDate } from "../../utils/defaultDate";
 import DefaultDateButton from "./DefaultDateButton";
@@ -22,11 +21,9 @@ const PNLReport = () => {
   // const [amountFrom, setAmountFrom] = useState(null);
   // const [amountTo, setAmountTo] = useState(null);
   // const [showDepositImage, setShowDepositImage] = useState(false);
-  const { token, setClientId, adminRole, setRefetchViewClient } =
-    useContextState();
-  const navigate = useNavigate();
-  const [viewDepositData, setViewDepositData] = useState(false);
-  const [depositData, setDepositData] = useState([]);
+  const { token, adminRole } = useContextState();
+  const [viewPNLData, setViewPNLData] = useState(false);
+  const [PNLData, setPNLData] = useState([]);
 
   const [startDate, setStartDate] = useState(defaultDate(1));
   const [endDate, setEndDate] = useState(new Date());
@@ -83,15 +80,15 @@ const PNLReport = () => {
     setIsLoading(true);
     const data = await getDepositReport();
     setIsLoading(false);
-    setViewDepositData(true);
+    setViewPNLData(true);
     if (data?.success) {
-      setDepositData(data?.result);
+      setPNLData(data?.result);
     }
   };
 
-  let totalDeposit = 0;
-  for (let data of depositData) {
-    totalDeposit += parseFloat(data?.amount);
+  let totalPNL = 0;
+  for (let data of PNLData) {
+    totalPNL += parseFloat(data?.amount);
   }
 
   return (
@@ -238,53 +235,42 @@ const PNLReport = () => {
         </div>
       </div>
 
-      {viewDepositData && (
+      {viewPNLData && (
         <>
           <hr className="my-3" />
-          {totalDeposit ? (
+          {totalPNL ? (
             <p style={{ margin: "0px" }}>
-              Total PNL :{new Intl.NumberFormat("en-IN").format(totalDeposit)}
+              Total PNL :{new Intl.NumberFormat("en-IN").format(totalPNL)}
             </p>
           ) : null}
-          {depositData?.length > 0 ? (
-            <p style={{ margin: "0px", marginBottom: "5px" }}>
-              PNL Count: {depositData?.length}
-            </p>
-          ) : null}
-          {depositData?.length > 0 ? (
+
+          {PNLData?.length > 0 ? (
             <div className="card">
               <h5 className="card-header">PNL Report</h5>
               <div className="table-responsive text-nowrap">
                 <table className="table table-hover table-sm">
                   <thead className="table-dark">
                     <tr>
-                      <th>User Id</th>
+                      <th>Event Name</th>
 
                       <th>Amount</th>
-
-                      <th>Request Time</th>
-                      <th>Approval Time</th>
                     </tr>
                   </thead>
                   <tbody className="table-border-bottom-0">
-                    {depositData?.map((data, i) => {
+                    {PNLData?.map((data, i) => {
                       return (
                         <tr key={i}>
-                          <td
-                            style={{ cursor: "pointer" }}
-                            onClick={() => {
-                              setClientId(data?.userId);
-                              setRefetchViewClient(true);
-                              navigate("/view-client");
-                            }}
-                          >
-                            {data?.userId}
+                          <td style={{ cursor: "pointer" }}>
+                            {data?.event_name}
                           </td>
 
-                          <td>{data?.amount}</td>
-
-                          <td>{data?.deposit_date}</td>
-                          <td>{data?.date_modified}</td>
+                          <td
+                            className={`${
+                              data?.amount > 0 ? "text-success" : "text-danger"
+                            }`}
+                          >
+                            {data?.amount}
+                          </td>
                         </tr>
                       );
                     })}
