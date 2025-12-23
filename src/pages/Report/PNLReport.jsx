@@ -12,12 +12,12 @@ import { defaultDate } from "../../utils/defaultDate";
 import DefaultDateButton from "./DefaultDateButton";
 import { AdminRole } from "../../constant/constant";
 import Loader from "../../components/ui/Loader/Loader";
-import { useGetPNL } from "../../hooks/pnl";
+import { useGetIndex } from "../../hooks";
 
 const PNLReport = () => {
   const [branchId, setBranchId] = useState(0);
-  const { data: PNL } = useGetPNL({
-    type: "getPNL",
+  const { data: branches } = useGetIndex({
+    type: "getBranches",
   });
   // const [amountFrom, setAmountFrom] = useState(null);
   // const [amountTo, setAmountTo] = useState(null);
@@ -36,7 +36,7 @@ const PNLReport = () => {
   const getDepositReport = async () => {
     const generatedToken = handleRandomToken();
     const payload = {
-      type: "getDeposit",
+      type: "getPNL",
       fromDate: moment(startDate).format("YYYY-MM-DD"),
       toDate: moment(endDate).format("YYYY-MM-DD"),
       token: generatedToken,
@@ -161,7 +161,7 @@ const PNLReport = () => {
                           Branch
                         </option>
                         <option value="0">All Branch</option>
-                        {PNL?.result?.map((site) => (
+                        {branches?.result?.map((site) => (
                           <option key={site?.branch_id} value={site?.branch_id}>
                             {site?.branch_name}
                           </option>

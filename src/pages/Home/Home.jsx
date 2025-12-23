@@ -62,8 +62,6 @@ const Home = () => {
     return date < start || date > today;
   };
 
-  console.log(balanceData);
-
   return (
     <div className="container-xxl flex-grow-1 container-p-y">
       <div style={{ marginBottom: "10px" }}>
@@ -83,31 +81,50 @@ const Home = () => {
           <div className="row">
             <div className="col-lg-12 col-md-12">
               <div className="row">
-                {balanceData?.map((item, idx) => {
-                  return (
-                    <div key={idx} className="col-sm-3 col-12 mb-4">
-                      <a>
-                        <div className="card">
-                          <div className="card-body text-center">
-                            <h2
-                              className="mb-1"
-                              style={{
-                                color: `${defineBalanceColor(item?.value)}`,
-                              }}
-                            >
-                              {isLoading || isPending ? (
-                                <Loader />
-                              ) : (
-                                item?.value
-                              )}
-                            </h2>
-                            <span className="text-muted">{item?.title}</span>
-                          </div>
+                {isLoading || isPending
+                  ? Array.from({ length: 4 }).map((_, index) => {
+                      return (
+                        <div key={index} className="col-sm-3 col-12 mb-4">
+                          <a>
+                            <div className="card">
+                              <div className="card-body text-center">
+                                <h2 className="mb-1">
+                                  <Loader />
+                                </h2>
+                                {/* <span className="text-muted">{item?.title}</span> */}
+                              </div>
+                            </div>
+                          </a>
                         </div>
-                      </a>
-                    </div>
-                  );
-                })}
+                      );
+                    })
+                  : balanceData?.map((item, idx) => {
+                      return (
+                        <div key={idx} className="col-sm-3 col-12 mb-4">
+                          <a>
+                            <div className="card">
+                              <div className="card-body text-center">
+                                <h2
+                                  className="mb-1"
+                                  style={{
+                                    color: `${defineBalanceColor(item?.value)}`,
+                                  }}
+                                >
+                                  {isLoading || isPending ? (
+                                    <Loader />
+                                  ) : (
+                                    item?.value
+                                  )}
+                                </h2>
+                                <span className="text-muted">
+                                  {item?.title}
+                                </span>
+                              </div>
+                            </div>
+                          </a>
+                        </div>
+                      );
+                    })}
               </div>
             </div>
           </div>
